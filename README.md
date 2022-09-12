@@ -41,7 +41,7 @@ make
 
 - 获取 Type 的 std::string 形式
 
-  会发现，直接 errs() << Type* 是可以的，但是并没有直接转成 std::string 的方法，当然我觉得这种操作一般只在调试的时候需要使用，所以不提供这个接口也很正常，但是这里要传递到 ddlog 中，所以需要转成 string，解决的方法是使用 print 方法
+  会发现，直接 errs() << Type 是可以的，但是并没有直接转成 std::string 的方法，当然我觉得这种操作一般只在调试的时候需要使用，所以不提供这个接口也很正常，但是这里要传递到 ddlog 中，所以需要转成 string，解决的方法是使用 print 方法
 
   ```cpp
     std::string TypeStr;
