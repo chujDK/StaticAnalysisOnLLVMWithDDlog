@@ -1,0 +1,8 @@
+*.ll
+*.bc
+*.out
+*_ddlog
+*.so
+compile_flags.txt
+.vscode
+

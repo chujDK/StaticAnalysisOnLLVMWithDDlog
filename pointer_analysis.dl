@@ -1,0 +1,9 @@
+input relation AllocInst(variable: string, object: string)
+input relation LoadInst(variable: string, object: string)
+input relation StoreInst(variable_targe: string, variable_source: string)
+
+output relation VarPointsTo(variable: string, object: string)
+
+VarPointsTo(variable, object) :- AllocInst(variable, object).
+VarPointsTo(variable, object) :- LoadInst(variable, object).
+VarPointsTo(variable, object) :- StoreInst(variable, variable_rhs), VarPointsTo(variable_rhs, object).
