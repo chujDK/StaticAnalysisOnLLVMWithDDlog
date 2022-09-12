@@ -65,3 +65,18 @@ make
   }
   #endif
   ```
+
+还想说点别的
+
+- 之前学习的是 Java 的静态分析，基于 soot 和 tai-e 的 ir，直接套过来，看来不太可行。比如 llvm ir 创建对象并不是使用 new 关键字，而是通过 new 函数，分配对象大小的空间，然后进行初始化。这个过程是先调用 new，然后 bitcast 到对应的类型，这样
+
+  ```
+  ; alloc the memory
+  %call = call noalias noundef nonnull i8* @_Znwm(i64 noundef 24) #7
+  %0 = bitcast i8* %call to %class.B*
+  ; default construct
+  %1 = bitcast %class.B* %0 to i8*
+  call void @llvm.memset.p0i8.i64(i8* align 16 %1, i8 0, i64 24, i1 false)
+  ``` 
+  
+  这样的实现，对于 obj 的设计，和 soot 或者说 Java 这样 new 时带类型信息相比，就会麻烦一些了。还需要学习更多
